@@ -1,11 +1,40 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import HeroSection from '../components/HeroSection.astro'; 
+import SomosSection from '../components/SomosSection.astro';
+import AccesoriosSection from '../components/AccesoriosSection.astro';
+import SolarSection from '../components/SolarSection.astro';
+import DisfruteSection from '../components/DisfruteSection.astro';
+import ModelXSection from '../components/ModelXSection.astro';
+import ModelSSection from '../components/ModelSSection.astro';
+import ChargeSection from '../components/ChargeSection.astro';
+import LandingHeader from '../components/LandingHeader.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Tesla page"> <!-- Aquí hemos añadido un "title" para que el título de la página sea "Tesla page". -->
+	<LandingHeader /> <!-- Aquí hemos añadido el componente "LandingHeader" para que se muestre todo el codigo que habiamos escrito aquí antes. -->	
+	
+	<main>
+		
+		
+		<HeroSection /> <!-- Aquí hemos añadido el componente "HeroSection" para que se muestre todo el codigo que habiamos escrito aquí antes. -->
+		
+		<ChargeSection />
+
+		<ModelSSection />
+
+		<ModelXSection />
+
+		<DisfruteSection />
+
+		<SolarSection />
+
+		<AccesoriosSection />
+
+		<SomosSection />
+
+		
+	
+	
+	</main> 
 </Layout>

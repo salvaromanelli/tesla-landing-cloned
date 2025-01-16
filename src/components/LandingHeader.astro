@@ -1,0 +1,71 @@
+---
+import Logo from './logo.astro' // Aquí hemos importado el componente Logo.astro que hemos creado para simplificar el código de la página.
+---
+
+<header 
+    id="landing-header"
+    class="py-4 px-10 flex items-center fixed top-0 w-full justify-between z-40"> <!-- Aquí hemos modificado la clase de este header para que se mantenga fijo en la parte superior de la página. Y con "flex" lo que hacemos es que se deje un espacio entre el logo y las otras opciones. -->
+    <div class="flex flex-grow basis-0"> <!-- el flex y flex grow es para que cree una caja dentro del logo y que se expanda hacia la derecha para centrar todo el contenido en medio. --><!-- Este svg es el logo svg de la pagina tesla que estamos replicando directamente extraído con inspeccionar desde su HTML. -->
+    <Logo /> <!-- Hemos puesto todo el codigo del logo extraído de internet en un component logo.astro para tener menos codigo y simplificar. -->
+</div>
+<nav class="flex"> <!-- Aquí hemos añadido un "flex-grow" para que el menú de opciones de la parte superior se expanda y ocupe todo el espacio que queda en la parte superior de la página. -->
+    <ul 
+        class= "flex text-sm [&>li>a]:text-white [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2" >	<!-- Aquí hemos hemos añadido un "flex" para que estén los elementos de la lista en horizontal. Luego [&>li>a] le digo a Tailwind que me estile todos los elementos de abajo de una forma en específico así no tengo que poner una clase en cada uno para modificar su tamaño, fuente separación entre ellos, etc.-->
+        <li><a href="#">Vehicles</a></li> <!-- aqui para obtener esta estructura html que representa la barra superior de opciones hemos usado la siguiente función: -->
+        <li><a href="#">Energy</a></li> <!-- ul>li>*5a a esto se le llama "emet" y es para generar la cantidad de opciones que quiero en mi barra superior multiplicando la cantidad deseada antes de la "a" final. -->
+        <li><a href="#">Charging</a></li>
+        <li><a href="#">Discover</a></li>
+        <li><a href="#">Shop</a></li>
+    </ul>
+    
+</nav>
+
+<nav class="flex flex-grow justify-end basis-0" > <!-- Al igual que en el logo, el flex y flex grow es para que cree una caja dentro de las opciones y que se expanda hacia la izquierda para centrar todo el contenido restante en medio. -->
+<ul 
+    class="flex text-sm [&>li>a]:text-white [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"> <!-- Aquí hemos añadido un "flex" para que los elementos de la lista estén en horizontal. -->
+    <li><a href="#">Support</a></li> <!-- Aquí hemos hecho otro <li> para las otras opciones en la parte superior derecha de la página. -->
+    <li><a href="#">Language</a></li>
+    <li><a href="#">Account</a></li>
+</ul>
+</nav>
+
+<div
+id="menu-backdrop"
+class={`
+    absolute bg-black/5 backdrop-blur-lg rounded"
+    left-[var(--left)] top-[var(--top)] 
+    w-[var(--width)] h-[var(--height)]
+    transition-all duration-500
+    ease-in-out opacity-0 -z-10
+`}
+></div> 
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const listItem = document.querySelectorAll('#landing-header li');
+        const menuBackDrop = document.querySelector('#menu-backdrop') as HTMLElement;
+
+        if (menuBackDrop) {
+        listItem.forEach((item) => {
+            item.addEventListener('mouseenter', () => {
+                const { left, top, width, height } = item.getBoundingClientRect();
+                
+            
+                menuBackDrop.style.setProperty('--left', `${left}px`);
+                menuBackDrop.style.setProperty('--top', `${top}px`);
+                menuBackDrop.style.setProperty('--width', `${width}px`);
+                menuBackDrop.style.setProperty('--height', `${height}px`);
+                
+                menuBackDrop.style.opacity = '1';
+                menuBackDrop.style.visibility = 'visible';   
+            });
+
+            item.addEventListener('mouseleave', () => {
+                menuBackDrop.style.opacity = '0';
+                menuBackDrop.style.visibility = 'hidden';
+            });
+        });
+        }
+    });
+</script>
